@@ -2,5 +2,29 @@
 {% load staticfiles %}
 
 {% block body_block%}
-Hey there!
+<div style="margin: auto;
+  height: 100%
+  width: 50%;
+  text-align: center;
+  padding: 10px; position: relative;
+  top: 50%;
+  vertical-align: middle;">
+    {% if result%}
+        {{result}}
+        <p/>
+        <h3>Try Another</h3>
+    {% endif%}
+    <form method="post">
+        <input type="text" name="query" style="border:none; padding: 16px 30px; width: 50%; background-color:rgba(255, 255, 255, 0.2); padding:5px; margin:10px"></input>
+        <br/>
+        {% csrf_token %}
+	    <input type="submit" name="" value="Analyze" style="background-color: #f1f1f1;
+                    color: black;
+                    border:none;
+                    border-radius: 5px;
+                    font-size: 16px;
+                    padding: 16px 30px;">
+        </input>
+    </form>
+</div>
 {% endblock %}

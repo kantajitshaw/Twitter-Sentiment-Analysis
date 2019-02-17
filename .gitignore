@@ -149,6 +149,7 @@ dmypy.json
 
 # User-specific stuff
 .idea/**/workspace.xml
+.idea/**/*.xml
 .idea/**/tasks.xml
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
@@ -214,9 +215,9 @@ fabric.properties
 ### PyCharm Patch ###
 # Comment Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-215987721
 
-# *.iml
-# modules.xml
-# .idea/misc.xml
+*.iml
+modules.xml
+.idea/misc.xml
 # *.ipr
 
 # Sonarlint plugin
