@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+ {% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Sentiment analyzer</title>
+    <style>
+	.footer {
+   		position: fixed;
+   		background-color: rgba(256,256,256,0.2);
+   		left: 0;
+   		bottom: 0;
+   		padding: 25px;
+   		width: 100%;
+   		color: white;
+	}
+	.header {
+        overflow: hidden;
+        text-align: center;
+        background-color: rgba(256,256,256,0.2);
+    }
+</style>
+</head>
+<!--<body background="/sentiment_analyzer/static/bg.jpg" style="no-repeat center;">-->
+<body background="{% static "images/bg.jpg" %}" style="no-repeat center;">
+
+    <div class="header">
+        <h1 style="font-family: OCR A Std, monospace;">Sentiment Analysis tool</h1>
+    </div>
+    {% block body_block%}
+    {% endblock%}
+
+ 	<div class="footer">
+        <div style="width:100%; text-align: center;">
+     		<font color="black" style="float:right; margin-right:35px;" >© 2019 Kantajit Shaw All Rights Reserved</font>
+     		<font color="black" style="float:left; margin-right:35px;" ><a href="https://kantajitshaw.github.io">Know me</a> <a href="/about">About</a></font>
+        </div>
+	</div>
+</body>
+</html>
