@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome to Sentiment analyzer</title>
+    <title>Welcome to Twitter Sentiment analyzer</title>
     <style>
 	.footer {
    		position: fixed;
@@ -19,16 +19,21 @@
         text-align: center;
         background-color: rgba(256,256,256,0.2);
     }
+    .clear { clear: both; height: 60px; }
+
 </style>
+    {% block header_block%}
+    {% endblock %}
 </head>
 <!--<body background="/sentiment_analyzer/static/bg.jpg" style="no-repeat center;">-->
 <body background="{% static "images/bg.jpg" %}" style="no-repeat center;">
 
     <div class="header">
-        <h1 style="font-family: OCR A Std, monospace;">Sentiment Analysis tool</h1>
+        <h1 style="font-family: OCR A Std, monospace;">Twitter Sentiment Analysis tool</h1>
     </div>
     {% block body_block%}
     {% endblock%}
+<div class="clear"></div>
 
  	<div class="footer">
         <div style="width:100%; text-align: center;">

@@ -1,6 +1,13 @@
 {% extends 'sentiment/base.html'%}
 {% load staticfiles %}
 
+{% block header_block%}
+    {% if result%}
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    {% endif %}
+
+{% endblock %}
+
 {% block body_block%}
 <div style="margin: auto;
   height: 100%
@@ -10,21 +17,56 @@
   top: 50%;
   vertical-align: middle;">
     {% if result%}
-        {{result}}
-        <p/>
         <h3>Try Another</h3>
-    {% endif%}
+    {% endif %}
     <form method="post">
         <input type="text" name="query" style="border:none; padding: 16px 30px; width: 50%; background-color:rgba(255, 255, 255, 0.2); padding:5px; margin:10px"></input>
-        <br/>
         {% csrf_token %}
 	    <input type="submit" name="" value="Analyze" style="background-color: #f1f1f1;
                     color: black;
                     border:none;
                     border-radius: 5px;
                     font-size: 16px;
-                    padding: 16px 30px;">
-        </input>
+                    padding: 16px 30px;"/>
     </form>
+    <br/>
+    {% if result%}
+        <div id="myDiv" style="height:30%; margin: auto;"><!-- Plotly chart will be drawn inside this DIV --></div>
+        <script>
+        <!-- JAVASCRIPT CODE GOES HERE -->
+            var trace1 = {
+                    x: {{result.polarities}},
+                    y: {{result.subjectivities}},
+                    mode: 'markers',
+                    type: 'scatter',
+                    text: {{result.labels|safe}},
+                    marker: {size: 12 }
+                };
+                var data = [ trace1 ];
+                var layout = {
+                    xaxis: {
+                        range: [ -1.2, 1.2 ],
+                        title: "Polarity",
+                        titlefont: {
+                        family: "Courier New, monospace",
+                        size: 18,
+                           color: "#7f7f7f"
+                        }
+                    },
+                    yaxis: {
+                        range: [-1.2, 1.2],
+                        title: "Subjectivity",
+                        titlefont: {
+                        family: "Courier New, monospace",
+                        size: 18,
+                           color: "#7f7f7f"
+                        }
+                    },
+                    title:'Sentiment'
+                };
+
+                Plotly.newPlot('myDiv', data, layout);
+         </script>
+    {% endif%}
 </div>
 {% endblock %}
