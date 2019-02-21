@@ -225,3 +225,5 @@ modules.xml
 
 # End of https://www.gitignore.io/api/git,django,pycharm
 
+#my rules
+replace_keys.sh
