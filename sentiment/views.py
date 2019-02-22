@@ -23,3 +23,7 @@ def index(request):
         pass
     else:
         return render(request, 'sentiment/index.html')
+
+
+def about(request):
+    return render(request, 'sentiment/about.html')

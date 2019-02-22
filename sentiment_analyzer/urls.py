@@ -21,4 +21,5 @@ from django.conf.urls import url
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^$', views.index, name='index'),
+    url(r'^about/$', views.about, name='about'),
 ]
