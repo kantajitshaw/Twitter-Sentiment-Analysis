@@ -1,11 +1,17 @@
+import os
+
 import tweepy
 from textblob import TextBlob
+from sentiment_analyzer.configparser import load_config
+from sentiment_analyzer.settings import BASE_DIR
 
-consumer_key = "<YOUR_TWITTER_CONSUMER_KEY>"
-consumer_secret = "<YOUR_TWITTER_CONSUMER_SECRET>"
+config = load_config(os.path.join(BASE_DIR, 'sentiment.ini'))
 
-access_token = "<YOUR_TWITTER_ACCESS_TOKEN>"
-access_token_secret = "<YOUR_TWITTER_ACCESS_TOKEN_SECRET>"
+consumer_key = config['twitter_config.consumer_key']
+consumer_secret = config['twitter_config.consumer_key_secret']
+
+access_token = config['twitter_config.access_token']
+access_token_secret = config['twitter_config.access_token_secret']
 
 
 def analyze(query_text):

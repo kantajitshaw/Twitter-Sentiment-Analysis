@@ -227,3 +227,5 @@ modules.xml
 
 #my rules
 replace_keys.sh
+restore_keys.sh
+sentiment.ini
