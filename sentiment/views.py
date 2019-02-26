@@ -22,7 +22,8 @@ def index(request):
             polarities.append(item[1].polarity)
             subjectivities.append(item[1].subjectivity)
             labels.append(item[0])
-            tweet = Tweet.objects.get_or_create(search_id=search)[0]
+            tweet = Tweet()
+            tweet.search_id = search
             tweet.tweet_text = item[0]
             tweet.polarity = item[1].polarity
             tweet.subjectivity = item[1].subjectivity
