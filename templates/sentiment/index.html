@@ -1,6 +1,6 @@
 {% extends 'sentiment/base.html'%}
 {% load staticfiles %}
-
+{% load sentiment_template_tags %}
 {% block header_block%}
     {% if result%}
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
@@ -17,10 +17,11 @@
   top: 50%;
   vertical-align: middle;">
     {% if result%}
-        <h3>Try Another</h3>
+        Sentiments for {{text}}
+        <h4>Try Another</h4>
     {% endif %}
-    <form method="post">
-        <input type="text" name="query" style="border:none; padding: 16px 30px; width: 50%; background-color:rgba(255, 255, 255, 0.2); padding:5px; margin:10px"></input>
+    <form method="post" id="sentiment-form" name="sentiment-form" onsubmit="return required();">
+        <input type="text" id="query" name="query" style="border:none; padding: 16px 30px; width: 50%; background-color:rgba(255, 255, 255, 0.2); padding:5px; margin:10px"></input>
         {% csrf_token %}
 	    <input type="submit" name="" value="Analyze" style="background-color: #f1f1f1;
                     color: black;
@@ -29,9 +30,30 @@
                     font-size: 16px;
                     padding: 16px 30px;"/>
     </form>
+    <script type="text/javascript">
+        function required()
+        {
+            var empt = document.forms["sentiment-form"]["query"].value;
+            if (empt == "")
+            {
+                alert("Please input a Value");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+    </script>
     <br/>
+    <div style="float:left">
+        {% get_recent_searches %}
+    </div>
+    <div style="float:right">
+        {% get_recent_trends %}
+    </div>
     {% if result%}
-        <div id="myDiv" style="height:30%; margin: auto;"><!-- Plotly chart will be drawn inside this DIV --></div>
+        <div id="myDiv" style="height:30%;margin:auto;display: inline-block;"><!-- Plotly chart will be drawn inside this DIV --></div>
         <script>
         <!-- JAVASCRIPT CODE GOES HERE -->
             var trace1 = {
@@ -62,9 +84,10 @@
                            color: "#7f7f7f"
                         }
                     },
-                    title:'Sentiment'
+                    title:'Sentiment',
+                    width:500,
+                    height:400
                 };
-
                 Plotly.newPlot('myDiv', data, layout);
          </script>
     {% endif%}

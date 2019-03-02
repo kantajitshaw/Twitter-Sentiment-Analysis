@@ -1,10 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% if trends %}
+<h2><center>Twitter trending tags</center></h2>
+<div id="trends-list">
+    {% for trend in trends%}
+            <a href="javascript:;">{{trend}}</a><p/>
+    {% endfor %}
+</div>
+{% endif%}
+<script type="text/javascript">
+    // locate your element and add the Click Event Listener
+    document.getElementById("trends-list").addEventListener("click",function(e) {
+        if(e.target && e.target.nodeName == "A") {
+            document.getElementById("query").value=e.target.innerText;
+            document.getElementById("sentiment-form").submit();
+        }
+    });
+</script>

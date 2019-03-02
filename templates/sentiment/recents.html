@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<h2><center>Recent keywords</center></h2>
 
-</body>
-</html>
+<div id="recent-list">
+    {% if recent %}
+        {% for item in recent%}
+            <a href="javascript:;">{{item.keyword}}</a><p/>
+        {% endfor %}
+    {% endif %}
+</div>
+<script type="text/javascript">
+    // locate your element and add the Click Event Listener
+    document.getElementById("recent-list").addEventListener("click",function(e) {
+        if(e.target && e.target.nodeName == "A") {
+            document.getElementById("query").value=e.target.innerText;
+            document.getElementById("sentiment-form").submit();
+        }
+    });
+</script>
